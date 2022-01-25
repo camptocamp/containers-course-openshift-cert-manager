@@ -15,6 +15,7 @@ spec:
         dns01:
           route53:
             region: eu-west-1
+            hostedZoneID: {{ .Values.hostedZoneID }}
             accessKeyID: {{ .Values.accessKey }}
             secretAccessKeySecretRef:
               name: prod-route53-credentials-secret

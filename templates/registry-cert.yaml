@@ -2,15 +2,15 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: apps-wildcard-tls
-  namespace: openshift-ingress
+  namespace: openshift-image-registry
 spec:
-  secretName: apps-wildcard-tls
-  duration: 2160h # 90d
+  secretName: registry-tls
+  duration: 2160h0m0s
   renewBefore: 360h # 15d
   subject:
     organizations:
       - Camptocamp
-  commonName: {{ .Values.wildcardDomain | quote }}
+  commonName: {{ .Values.registryUrl | quote }}
   privateKey:
     algorithm: RSA
     encoding: PKCS1
@@ -19,7 +19,7 @@ spec:
     - server auth
     - client auth
   dnsNames:
-    - {{ .Values.wildcardDomain | quote }}
+    - {{ .Values.registryUrl | quote }}
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
