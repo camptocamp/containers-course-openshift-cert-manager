@@ -10,7 +10,7 @@ spec:
   subject:
     organizations:
       - Camptocamp
-  commonName: {{ .Values.wildcardDomain }}
+  commonName: {{ .Values.wildcardDomain | quote }}
   isCA: false
   privateKey:
     algorithm: RSA
@@ -20,7 +20,7 @@ spec:
     - server auth
     - client auth
   dnsNames:
-    - {{ .Values.wildcardDomain }}
+    - {{ .Values.wildcardDomain | quote }}
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
