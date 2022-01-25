@@ -1,3 +1,4 @@
 dnsZone: 'example.com'
+wildcardDomain: 'www.example.com'
 accessKey: ''
 secretAccessKey: ''
