@@ -1,9 +1,9 @@
-{{- range .Values.wildcardDomains }}
+{{- range $index, $domain := .Values.wildcardDomains }}
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: apps-wildcard-tls
+  name: {{ $index }}
   namespace: openshift-ingress
 spec:
   secretName: apps-wildcard-tls
@@ -12,7 +12,7 @@ spec:
   subject:
     organizations:
       - Camptocamp
-  commonName: {{ . | quote }}
+  commonName: {{ $domain | quote }}
   privateKey:
     algorithm: RSA
     encoding: PKCS1
@@ -21,7 +21,7 @@ spec:
     - server auth
     - client auth
   dnsNames:
-    - {{ . | quote }}
+    - {{ $domain | quote }}
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
