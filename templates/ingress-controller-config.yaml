@@ -15,4 +15,4 @@ spec:
   tuningOptions: {}
   unsupportedConfigOverrides: null
   defaultCertificate:
-    name: apps-wildcard-tls
+    name: {{ .Values.clusterWildcardDomain }}
